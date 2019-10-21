@@ -24,10 +24,14 @@ fred.name = "Brick"
 fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
-
+ no they will not because  home planet is a let  a constant so it would need to be unwrapped ?
+ 
 Fix the class definition for `Giant` in the space below so that it **does** work:
-
-
+   ```class Giant {
+    var name: String = "Fred"
+    var weight: Double = 340.0
+    var homePlanet: String = "Earth"
+   ```
 ## Question 2
 
 Take a look at this struct that represents an alien:
@@ -47,10 +51,13 @@ Will these three lines of code run? If so, why not?
 bilbo.name = "Jake"
 bilbo.height = 1.42
 bilbo.homePlanet = "Saturn"
+
+it wont run because bilbo already been initialized  as a let so it is already a constant 
 ```
 
 Change the declaration of `bilbo` so that the above three lines of code **do** work:
 
+var bilbo = Alien(name: "Bilbo", height: 1.67, homePlanet: "Venus")
 
 ## Question 3
 
@@ -64,10 +71,10 @@ jason.name = "Jason"
 ```
 
 What will the value of `edgar.name` be after those three lines of code are run? What will the value of `jason.name` be? Why?
-
+jasons.name would be  "jason" this is  because jason.name  was anounced after the let statement about it  
 
 ## Question 4
-
+ 
 Given this bit of code that uses the `Alien` struct:
 
 ```swift
@@ -77,8 +84,9 @@ charlesFromJupiter.homePlanet = "Jupiter"
 ```
 
 What will the value of `charles.homePlanet` be after the above code run? What about the value of `charlesFromJupiter.homePlanet`? Why?
-
-
+```
+charles.homePlanet would print pluto and charlesFromJupiter.homePlanet will print jupiter this is becuse charlesFromJupiter = charles is called as a var ?  im unsure of this answer please let me know correct answer 
+```
 ## Question 5
 
 Here's a struct that represents a bank account:
@@ -99,9 +107,23 @@ struct BankAccount {
 ```
 
 Does this code work? Why or why not?
-
+ it is missing the term mutating before func
 Fix the `BankAccount` struct so it does work.
+```struct BankAccount {
+ var owner: String
+    var balance: Double
 
+ mutating func deposit(_ amount: Double) {
+     balance += amount
+
+ }
+
+ mutating func withdraw(_ amount: Double) {
+  balance -= amount
+  
+ }
+}
+```
 Given the code below (which should incorporate any fixes you made):
 
 ```swift
@@ -111,14 +133,42 @@ joeAccount.withdraw(50.0)
 ```
 
 What will the value of `joeAccount.balance` be after the above code runs? What about the value of `joeOtherAccount.balance`? Why?
+ 
+ joeAccount.balance = 50.00
+ becuse joes account was initially 100 then below we said joe withdrew 50.0
 
-
+joeOtherAccount.balance  would be 50.0 because above we wrote  var joeOtherAccount = joeAccount so they point toward the same object 
 ## Question 6
 
 a. Write a struct called `Person` that has 3 properties of type `String`: a first name, a last name and a middle name. Have the middle name be optional. Create 2 instances of a `Person`, one with a middle name and one without. Print one of their first names.
+```struct Person {
+    var firstName: String
+    var middleName: String?
+    var lastName: String
 
+}
+let person1 = Person(firstName: "Ameber", middleName: "Kim", lastName: "young")
+let person2 = Person(firstName: "xera", lastName: "Agana")
+print(person2.firstName)
+````
 
 b. Write a method in `Person` called `fullName` that will return a formatted string of an instance's full name. Call this method on both the instances you created in part a.
+```
+struct Person {
+    var firstName: String
+    var middleName: String?
+    var lastName: String
+    func fullname(firstName: String, middleName: String, lastName: String) -> (String) {
+        let fullName = firstName + " " + middleName
+        + " " + lastName + " "
+        return fullName
+    }
+}
+let person1 = Person(firstName: "Ameber", middleName: "Kim", lastName: "young")
+let person2 = Person(firstName: "xera", lastName: "Agana")
+print(person2.firstName)
+print(person1.fullname)
+```
 
 
 ## Question 7
